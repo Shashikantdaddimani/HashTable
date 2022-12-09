@@ -28,17 +28,21 @@ public class HashTable {
 			}
 		}
 		Set<String> stringFrequency = frequency.keySet();
-		System.out.println("Frequency Of Each word in Sentence: \n 'To Be Or Not To Be'");
+		System.out.println("Frequency of words in sentence 'Paranoids are not paranoid because"
+				+ " they are paranoid but because they keep putting themselves deliberately into"
+				+ " paranoid avoidable situations' is");
 		for (String word : stringFrequency) {
-			System.out.println(word + " = " + frequency.get(word) + " times.");
-
+			if (frequency.get(word) > 1)
+				System.out.println(word + " = " + frequency.get(word) + " times.");
 		}
 	}
+
 	/*
 	 * Program execution starts from main method
 	 */
 	public static void main(String[] args) {
 		System.out.println("Welcome to the HashTable program");
-		userInputSentence("To Be Or Not To Be");
+		userInputSentence("Paranoids are not paranoid because they are paranoid but because "
+				+ "they keep putting themselves deliberately into paranoid avoidable situations");
 	}
 }
