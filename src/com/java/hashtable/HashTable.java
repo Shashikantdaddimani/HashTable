@@ -1,5 +1,6 @@
 package com.java.hashtable;
 
+import java.util.ArrayList;
 /**
  * imports all the class of the java.util package
  */
@@ -11,65 +12,67 @@ import java.util.Set;
  */
 public class HashTable {
 	/*
-	 * Method Name :userInputSentence
-	 * 
-	 */	
-		static void userInputSentence(String userString) {
-			HashMap<String, Integer> frequency = new HashMap<String, Integer>();
-			String[] words = userString.split(" ");
-			for (String word : words) {
-				if (frequency.containsKey(word)) {
-					frequency.put(word, frequency.get(word) + 1);
-				} else {
-					frequency.put(word, 1);
-				}
-			}
-			Set<String> stringFrequency = frequency.keySet();
-			System.out.println("Frequency of words in sentence 'Paranoids are not paranoid because"
-					+ " they are paranoid but because they keep putting themselves deliberately into"
-					+ " paranoid avoidable situations' is");
-			for (String word : stringFrequency) {
-				if (frequency.get(word) > 1)
-					System.out.println(word + " = " + frequency.get(word) + " times.");
-			}
-		}
+	 * declaring the arrayList
+	 */
+	 public ArrayList<Node> HashTable;
+	    LinkedList List;
 
-		public static void remove(String string, String removeWord) {
-			/*
-			 *  split words from the sentence to store in String array using split()
-			 */
-			String[] stringArray = string.split(" ");
-			String newSentenceAfterRemovingWord = " ";
-			  
-			/*
-			 * Iterating By using for each loop
-			 */
-			for (String words : stringArray) {
-				/*
-				 *  ! exclamation mark is used as not equal to sign
-				 */
-				if (!words.equals(removeWord)) {
-					/*
-					 *  iterate till end and remove "avoidable" from the paragraph
-					 */
-					newSentenceAfterRemovingWord = newSentenceAfterRemovingWord + words + " ";
+	    private String hashMapFunction(String value) {
+	        return value;
+	    }
+	    /*
+	     * constructor
+	     */
+	    public HashTable() {
+	        HashTable = new ArrayList<Node>();
+	        List = new LinkedList();
+	    }
 
-				}
-			}
-			/*
-			 * new sentence after removing "avoidable" word.
-			 */
-			System.out.println(newSentenceAfterRemovingWord);
-		}
+	    public void addValue(String value) {
 
-		public static void main(String[] args) {
+	        String hashKey = hashMapFunction(value);
+	        Node head = null;
+	        if (HashTable == null) {
+	            Node newNode = new Node(hashKey);
+	            HashTable.add(newNode);
+	        }
+	        for (Node node : HashTable) {
+	            if (node.data.equals(hashKey)) {
+	                head = node;
+	            }
+	        }
+	        if (head == null) {
+	            Node newNode = new Node(hashKey);
+	            HashTable.add(newNode);
+	            head = newNode;
+	        }
+	        List.append(value, head);
+	        for (Node node : HashTable) {
+	            if (node.data.equals(hashKey)) {
+	                node = head;
+	            }
+	        }
 
-			userInputSentence("Paranoids are not paranoid because they are paranoid but because "
-					+ "they keep putting themselves deliberately into paranoid avoidable situations");
-			
-			System.out.println("===========================================================================================");
-			String string = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
-			String removeWord = "avoidable";
-			remove(string, removeWord);
-		}
+	    }
+
+	    public void displayHashTable(ArrayList<Node> hashMap) {
+	        for (Node node : hashMap) {
+	            System.out.print(node.data + "=>");
+	            List.display(node.ref);
+	            System.out.println();
+	        }
+	    }
+	   /*
+	    * Program execution starts from main method
+	    */
+	    public static void main(String[] args) {
+	        HashTable hashTable = new HashTable();
+	        String sentence = "To be or not to be";
+	        String[] stringArray = sentence.split(" ");
+	        for (int i = 0; i < stringArray.length; i++) {
+	            hashTable.addValue(stringArray[i]);
+	        }
+
+	        hashTable.displayHashTable(hashTable.HashTable);
+	    }
 }
