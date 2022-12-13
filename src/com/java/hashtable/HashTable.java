@@ -1,11 +1,8 @@
 package com.java.hashtable;
-
-import java.util.ArrayList;
-/**
+/*
  * imports all the class of the java.util package
  */
-import java.util.HashMap;
-import java.util.Set;
+import java.util.ArrayList;
 
 /**
  * Class to create HashTable with different methods
@@ -66,9 +63,14 @@ public class HashTable {
 	    * Program execution starts from main method
 	    */
 	    public static void main(String[] args) {
+	    	System.out.println("welcome to the HashTable Program");
+	    	/*
+	    	 * creating the class Object
+	    	 */
 	        HashTable hashTable = new HashTable();
-	        String sentence = "To be or not to be";
-	        String[] stringArray = sentence.split(" ");
+	        String paragrap = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves "
+	        		           + "deliberately into paranoid avoidable situations";
+	        String[] stringArray = paragrap.split(" ");
 	        for (int i = 0; i < stringArray.length; i++) {
 	            hashTable.addValue(stringArray[i]);
 	        }
