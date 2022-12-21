@@ -2,79 +2,68 @@ package com.java.hashtable;
 /*
  * imports all the class of the java.util package
  */
-import java.util.ArrayList;
+
+import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Class to create HashTable with different methods
  */
 public class HashTable {
-	/*
-	 * declaring the arrayList
-	 */
-	 public ArrayList<Node> HashTable;
-	    LinkedList List;
+	static void userInputSentence(String userString) {
+		HashMap<String, Integer> frequency = new HashMap<String, Integer>();
+		String[] words = userString.split(" ");
+		for (String word : words) {
+			if (frequency.containsKey(word)) {
+				frequency.put(word, frequency.get(word) + 1);
+			} else {
+				frequency.put(word, 1);
+			}
+		}
+		Set<String> stringFrequency = frequency.keySet();
+		System.out.println("Frequency of words in sentence 'Paranoids are not paranoid because"
+				+ " they are paranoid but because they keep putting themselves deliberately into"
+				+ " paranoid avoidable situations' is");
+		for (String word : stringFrequency) {
+			if (frequency.get(word) > 1)
+				System.out.println(word + " = " + frequency.get(word) + " times.");
+		}
+	}
 
-	    private String hashMapFunction(String value) {
-	        return value;
-	    }
-	    /*
-	     * constructor
-	     */
-	    public HashTable() {
-	        HashTable = new ArrayList<Node>();
-	        List = new LinkedList();
-	    }
+	public static void remove(String string, String removeWord) {
+		/*
+		 *  split words from the sentence to store in String array using split()
+		 */
+		String[] stringArray = string.split(" ");
+		String newSentenceAfterRemovingWord = " ";
+		  
+		/*
+		 * Iterating By using for each loop
+		 */
+		for (String words : stringArray) {
+			/*
+			 *  ! exclamation mark is used as not equal to sign
+			 */
+			if (!words.equals(removeWord)) {
+				// iterate till end and remove "avoidable" from the paragraph
+				newSentenceAfterRemovingWord = newSentenceAfterRemovingWord + words + " ";
 
-	    public void addValue(String value) {
+			}
+		}
+		/*
+		 * new sentence after removing "avoidable" word.
+		 */
+		System.out.println(newSentenceAfterRemovingWord);
+	}
 
-	        String hashKey = hashMapFunction(value);
-	        Node head = null;
-	        if (HashTable == null) {
-	            Node newNode = new Node(hashKey);
-	            HashTable.add(newNode);
-	        }
-	        for (Node node : HashTable) {
-	            if (node.data.equals(hashKey)) {
-	                head = node;
-	            }
-	        }
-	        if (head == null) {
-	            Node newNode = new Node(hashKey);
-	            HashTable.add(newNode);
-	            head = newNode;
-	        }
-	        List.append(value, head);
-	        for (Node node : HashTable) {
-	            if (node.data.equals(hashKey)) {
-	                node = head;
-	            }
-	        }
+	public static void main(String[] args) {
 
-	    }
-
-	    public void displayHashTable(ArrayList<Node> hashMap) {
-	        for (Node node : hashMap) {
-	            System.out.print(node.data + "=>");
-	            List.display(node.ref);
-	            System.out.println();
-	        }
-	    }
-	   /*
-	    * Program execution starts from main method
-	    */
-	    public static void main(String[] args) {
-	    	System.out.println("welcome to the HashTable Program");
-	    	/*
-	    	 * creating the class Object
-	    	 */
-	        HashTable hashTable = new HashTable();
-	        String paragrap = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves "
-	        		           + "deliberately into paranoid avoidable situations";
-	        String[] stringArray = paragrap.split(" ");
-	        for (int i = 0; i < stringArray.length; i++) {
-	            hashTable.addValue(stringArray[i]);
-	        }
-
-	        hashTable.displayHashTable(hashTable.HashTable);
-	    }
+		userInputSentence("Paranoids are not paranoid because they are paranoid but because "
+				+ "they keep putting themselves deliberately into paranoid avoidable situations");
+		
+		System.out.println("===========================================================================================");
+		String string = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
+		String removeWord = "avoidable";
+		remove(string, removeWord);
+	}
 }

@@ -1,9 +1,13 @@
 package com.java.hashtable;
+
+
+
 /**
  * Class to create LinkedList with different methods
  *
  */
 public class LinkedList {
+	Node head;
 	/*
 	 * The append function allows you to add an item to the end of the list
 	 */
@@ -20,6 +24,19 @@ public class LinkedList {
 	            temp.ref = newNode;
 	        }
 	    }
+//	 public void remove(Object data) {
+//			int index = 0;
+//			
+//			Node left = head;
+//			Node right = left.ref;
+//			while (right.data != data) {
+//				left = left.ref;
+//				right = right.ref;
+//				index++;
+//			}
+//			left.ref = right.ref;
+//
+//	 }
 	 /*
 	  *logic for Display method
 	  */
